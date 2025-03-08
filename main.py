@@ -3,7 +3,7 @@ from CHRLINE.hooks import HooksTracer
 import json
 
 cl = CHRLINE("mail", "password", useThrift=True, device="IOSIPAD")
-#ぜったいにだめこれ入れるとloginまではうまくいくけどbanくらう　version="17.21.3", os_name="iOS", os_ver="13"
+#ぜったいにだめこれ入れるとloginまではうまくいくけどbanくらう　version="13.21.3", os_name="iOS", os_ver="17"
 bot_mid = cl.profile.mid  
 hooks = HooksTracer(cl)
 
