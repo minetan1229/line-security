@@ -56,12 +56,10 @@ class OpHook(object):
 
             if bot_mid == invitee_mid:
                 if inviter_mid in WHITELIST:
-                    print(f"📥 Invited to group {group_id}. Joining...")
                     cl.acceptChatInvitation(group_id)
 
                     welcome_message = "I'm Minetan protect bot 😊 I will protect this group. If there is an error with this bot, please let Minetan know. Try typing /help"
                     cl.sendMessage(group_id, welcome_message)
-                    print(f"✅ Joined {group_id} and sent welcome message.")
         except Exception as e:
             print(f"❌ Error in on_invite_event: {e}")
 
@@ -79,49 +77,13 @@ class OpHook(object):
             print(f"⚠️ User {kicked_mid} was removed from group {group_id} by {kicker_mid}")
 
             if not kicker_mid in WHITELIST:
-                try:
-                    cl.deleteOtherFromChat(group_id, kicker_mid)
-                    print(f"✅ Removed user {kicker_mid} from group {group_id}")
-                except Exception as e:
-                    return
+                
+                cl.deleteOtherFromChat(group_id, kicker_mid)
+                print(f"✅ Removed user {kicker_mid} from group {group_id}")
 
             if kicked_mid in WHITELIST:
 
-                try:
-                    cl.inviteIntoChat(group_id, [kicked_mid])
-                except Exception as e:
-                    try:
-                        group_info = cl.getChats([group_id])
-                    
-                        if hasattr(group_info, "chats") and group_info.chats:
-                            chat_data = group_info.chats[0]
-                            if hasattr(chat_data, "extra") and hasattr(chat_data.extra, "groupExtra"):
-                                members = list(chat_data.extra.groupExtra.memberMids.keys())
-                            else:
-                                members = []
-                        else:
-                            members = []
-                    
-                        if members:
-                            key_data = cl.generateSharedSecret(len(members))
-                            cl.registerE2EEGroupKey(
-                                chatMid=group_id,
-                                members=members,
-                                keyIds=[key_data.keyId],
-                                encryptedSharedKeys=[key_data.encryptedKey]
-                            )
-                            print("✅ New e2eekey registered successfully.")
-                            cl.inviteIntoChat(group_id, [kicked_mid])
-                        else:
-                            return
-                    except Exception as e:
-                        return
-
-
-                try:
-                    cl.inviteIntoChat(group_id, [kicked_mid])
-                except Exception as e:
-                    return
+                cl.inviteIntoChat(group_id, [kicked_mid])
 
 
         except Exception as e:
