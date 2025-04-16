@@ -4,7 +4,7 @@ import json
 
 cl = CHRLINE("mail", "password", useThrift=True, device="IOSIPAD")
 #ぜったいにだめこれ入れるとloginまではうまくいくけどbanくらう　version="13.21.3", os_name="iOS", os_ver="17"
-#使用変更が激しいから今難しいかも
+#使用変更が激しいから今難しいかも、、、、
 bot_mid = cl.profile.mid  
 hooks = HooksTracer(cl)
 
@@ -88,7 +88,7 @@ class OpHook(object):
 
         except Exception as e:
             print(f"❌ Error in on_kick_event: {e}")
-            
+
 
 class ContentHook(object):
 
