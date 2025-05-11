@@ -5,6 +5,8 @@ import json
 cl = CHRLINE("mail", "password", useThrift=True, device="IOSIPAD")
 #ぜったいにだめこれ入れるとloginまではうまくいくけどbanくらう　version="13.21.3", os_name="iOS", os_ver="17"
 #使用変更が激しいから今難しいかも、、、、
+#同じipで短時間にログインリクエストするとバンされる。
+#osver変えればまあ動く。
 bot_mid = cl.profile.mid  
 hooks = HooksTracer(cl)
 
