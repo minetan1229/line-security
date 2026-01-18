@@ -60,7 +60,7 @@ class OpHook(object):
                 if inviter_mid in WHITELIST:
                     cl.acceptChatInvitation(group_id)
 
-                    welcome_message = "I'm Minetan protect bot 😊 I will protect this group. If there is an error with this bot, please let Minetan know. Try typing /help"
+                    welcome_message = "hi!"
                     cl.sendMessage(group_id, welcome_message)
         except Exception as e:
             print(f"❌ Error in on_invite_event: {e}")
@@ -168,3 +168,4 @@ class NormalCmd(object):
 
 
 tracer.run()
+
